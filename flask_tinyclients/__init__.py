@@ -1,8 +1,8 @@
 import requests
-import json
 from urllib.parse import urljoin
 
-__version__ = '0.4.5'
+
+__version__ = '0.4.6'
 
 
 class RESTAPIClient(object):
@@ -24,6 +24,7 @@ class RESTAPIClient(object):
             }
         }
         defaults.update(kwargs)
+
         try:
             response = requests.request(method, url, **defaults)
         except requests.exceptions.RequestException as err:
@@ -41,7 +42,6 @@ class RESTAPIClient(object):
         return self.request('GET', *args, **kwargs)
 
     def post(self, *args, **kwargs):
-        #kwargs['data'] = json.dumps(kwargs['data'])
         return self.request('POST', *args, **kwargs)
 
     def put(self, *args, **kwargs):
@@ -52,4 +52,3 @@ class RESTAPIClient(object):
 
     def __repr__(self):
         return '<%s %r>' % (self.__class__.__name__, id(self))
-
